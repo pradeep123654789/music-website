@@ -1,0 +1,412 @@
+/* ---------------------------------
+   IMPORTS & BASE STYLES
+---------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #2f1e37, #4B2E5D);
+  color: black;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+  color: var(--text-color);
+}
+
+* {
+  padding: 0;
+}
+
+h1 {
+  color: #d4a5ff;
+}
+
+/* ---------------------------------
+   NAVIGATION
+---------------------------------- */
+nav {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  height: 65px;
+  color: #4B2E5D;
+}
+
+.brand img {
+  width: 250px;
+  padding: 0;
+  filter: drop-shadow(0 0 5px #d4a5ff);
+}
+
+.brand {
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d4a5ff;
+  gap: 10px;
+  text-shadow: 0px 2px 5px #00000055;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------------------------
+   CONTAINER
+---------------------------------- */
+.container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 120px;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------------
+   BOTTOM PLAYER BAR
+---------------------------------- */
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: rgba(75, 46, 93, 0.3);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  border-radius: 20px 20px 0 0;
+}
+
+.bottom input[type="range"] {
+  width: 90%;
+}
+
+.bottom input[type="range"]::-webkit-slider-thumb,
+.bottom input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: #d4a5ff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px #00000099;
+}
+
+.bottom button:hover, .theme-picker button:hover { ... }
+
+/* ---------------------------------
+   ICONS
+---------------------------------- */
+.icons {
+  margin-top: 14px;
+}
+
+.icons i {
+  cursor: pointer;
+  font-size: 28px;
+  color: #d4a5ff;
+  padding: 10px;
+  background: linear-gradient(145deg, #7f5af0, #ff6ec4);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #7f5af0aa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icons i:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff6ec4aa;
+}
+
+/* ---------------------------------
+   PROGRESS BAR
+---------------------------------- */
+#myProgressBar {
+  width: 80%;
+  height: 6px;
+  accent-color: #4B2E5D;
+  cursor: pointer;
+}
+
+/* ---------------------------------
+   SONG ITEM CONTAINER
+---------------------------------- */
+.songItemContainer {
+  margin-top: 74px;
+  margin-bottom: 140px;
+}
+
+.songItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 12px;
+  margin: 8px 0;
+  height: 80px;
+  cursor: pointer;
+  color: #d4a5ff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  background-color: var(--card-bg);
+  border-color: var(--accent-color);
+}
+
+.songItem img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 1rem;
+  box-shadow: 0 0 10px #000;
+}
+
+.songItem.active {
+  background-color: rgba(75, 46, 93, 0.5);
+  border: 2px solid #ff6ec4;
+  box-shadow: 0 0 15px #ff6ec4aa;
+  background-color: var(--accent-color);
+  font-weight: bold;
+  background-color: rgba(75, 46, 93, 0.5);
+  background-color: var(--accent-color);
+
+}
+
+.songItem:hover {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timestamp {
+  color: #4B2E5D;
+}
+
+.timestamp i {
+  cursor: pointer;
+}
+
+/* ---------------------------------
+   SONG INFO
+---------------------------------- */
+.songInfo {
+  position: absolute;
+  left: 10vw;
+  font-family: 'Varela Round', sans-serif;
+  color: #d4a5ff;
+}
+
+.songInfo img {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+/* ---------------------------------
+   CONTROLS
+---------------------------------- */
+#masterPlay, #next, #previous {
+  font-size: 2rem;
+  color: #d4a5ff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#masterPlay:hover, #next:hover, #previous:hover {
+  color: #d4a5ff;
+  transform: scale(1.2);
+}
+
+#masterSongName {
+  font-size: 14px;
+}
+
+/* ---------------------------------
+   BACKGROUND & EFFECTS
+---------------------------------- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('your-animated-bg.gif') no-repeat center center/cover;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+.playing {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.playing::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5, #4ade80);
+  z-index: -1;
+  animation: gradientMove 4s infinite linear;
+}
+
+/* ---------------------------------
+   SEARCH BAR
+---------------------------------- */
+.search-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+#searchInput {
+  padding: 10px 20px;
+  width: 60%;
+  max-width: 400px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #d4a5ff;
+  border: 1px solid #ffffff33;
+  box-shadow: 0 0 10px #7f5af0aa;
+}
+
+#searchInput::placeholder {
+  color: ;#d4a5ff
+}
+
+/* ---------------------------------
+   THEME PICKER & BUTTON
+---------------------------------- */
+.theme-picker {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+#themeSwitcher {
+  padding: 1px 1px;
+  border-radius: 12px;
+  background-color: #4B2E5D;
+  color: gray;
+  border: none;
+  font-size: 14px;
+  font-family: 'Ubuntu', sans-serif;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* ---------------------------------
+   LOGO STYLES
+---------------------------------- */
+.app-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  color: #d4a5ff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-shadow: 0 2px 4px #00000088;
+}
+
+.app-logo img {
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 0 10px black);
+  border-radius: 50%;
+}
+
+/* ---------------------------------
+   RESPONSIVE
+---------------------------------- */
+@media (max-width: 768px) {
+  .brand {
+    font-size: 1.8rem;
+    margin: 0.5rem auto;
+  }
+
+  .songItem {
+    height: 65px;
+    padding: 8px 12px;
+  }
+
+  .songItem img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .songItem i, .songItem button {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 1.4rem;
+    margin: 0.3rem auto;
+  }
+
+  .songItem {
+    height: 60px;
+    padding: 6px 10px;
+  }
+
+  .songItem img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .songItem i, .songItem button {
+    font-size: 1rem;
+    padding: 4px;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-color); /* ya solid color like #000 */
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.songList {
+  margin-top: 160px; /* Header jitna upar space chahiye */
+}
+
+@media (max-width: 768px) {
+  .brand { font-size: 1.5rem; }
+  #searchInput { width: 90%; }
+}
+
+.loader {
+  display: none;
+  text-align: center;
+  color: var(--text-color);
+}
+
+button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
